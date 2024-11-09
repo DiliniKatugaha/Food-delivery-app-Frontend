@@ -32,7 +32,7 @@ const ProfileScreen = () => {
 
         if (response.data) {
           setUserDetails({
-            username: response.data.username, // Match the backend response if necessary
+            username: response.data.username, 
             email: response.data.email,
             status: response.data.status,
             contact: response.data.contact,
@@ -75,7 +75,7 @@ const ProfileScreen = () => {
 
       setIsSaving(true);
 
-      await axios.put('http://192.168.8.100:5000/customer/profile', userDetails, {  // Ensure the URL is correct
+      await axios.put('http://192.168.8.100:5000/customer/profile', userDetails, {  
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ const ProfileScreen = () => {
         <TouchableOpacity
           style={styles.saveButton}
           onPress={handleSaveProfile}
-          disabled={isSaving}  // Disable button while saving
+          disabled={isSaving}  
         >
           <Text style={styles.saveButtonText}>{isSaving ? 'Saving...' : 'Save'}</Text>
         </TouchableOpacity>

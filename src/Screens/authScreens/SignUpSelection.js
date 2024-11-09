@@ -6,12 +6,10 @@ function SignUpSelection(){
   const navigation = useNavigation();
 
   const handleCustomerSignUp = () => {
-    // Navigate to the Customer Sign-Up screen
     navigation.navigate('CustomerSignUp');
   };
 
   const handleRestaurateurSignUp = () => {
-    // Navigate to the Restaurateur Sign-Up screen
     navigation.navigate('RestaurantSignUp');
   };
 
@@ -52,16 +50,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 32,
-    color: '#4CAF50', // Green color similar to the image
+    color: '#4CAF50', 
   },
   button: {
-    backgroundColor: '#4CAF50', // Green color for the buttons
+    backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 8,
     marginBottom: 16,
   },
   restaurateurButton: {
-    backgroundColor: '#388E3C', // Slightly darker green for the Restaurateur button
+    backgroundColor: '#388E3C', 
   },
   buttonText: {
     color: '#FFF',

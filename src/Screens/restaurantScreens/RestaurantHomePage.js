@@ -3,12 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../Components/Header';
 
-// Example home screen for the restaurateur
 function RestaurantHomePage() {
   const navigation = useNavigation();
-
-  // Assuming you pass the restaurant logo as a prop or fetch it from a profile API
-  // const restaurantLogo = require('../assets/restaurant-logo.png'); // Replace with dynamic image
 
   const handleProfilePress = () => {
     navigation.navigate('Profile');
@@ -35,10 +31,6 @@ function RestaurantHomePage() {
               <Header title="My Account" type="arrow-left" />
 
             <View style={styles.container}>
-                {/* Display the restaurant logo */}
-                {/* <Image source={restaurantLogo} style={styles.logo} /> */}
-
-                {/* Render the buttons */}
                 <TouchableOpacity style={styles.button} onPress={handleProfilePress}>
                     <Text style={styles.buttonText}>Profile</Text>
                 </TouchableOpacity>
@@ -81,10 +73,10 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     marginBottom: 40,
-    resizeMode: 'contain', // Ensure the logo maintains its aspect ratio
+    resizeMode: 'contain', 
   },
   button: {
-    backgroundColor: '#4CAF50', // Green color for the buttons
+    backgroundColor: '#4CAF50', 
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,

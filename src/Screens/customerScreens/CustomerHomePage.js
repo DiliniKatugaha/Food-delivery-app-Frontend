@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, Image, Alert, ActivityIndicator } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome } from '@expo/vector-icons'; // For bottom icons
-import axios from 'axios'; // To fetch data
+import { FontAwesome } from '@expo/vector-icons'; 
+import axios from 'axios';
 import ProfileScreen from './ProfileScreen';
 
-const CustomerHomeScreen = ({ navigation }) => { // Add navigation prop
+const CustomerHomeScreen = ({ navigation }) => { 
   const [searchQuery, setSearchQuery] = useState('');
   const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
-
+  const [loading, setLoading] = useState(true); 
   useEffect(() => {
     fetchRestaurantDetails();
   }, []);
 
-  // Fetch restaurant details from server
   const fetchRestaurantDetails = async () => {
     try {
       const response = await axios.get('http://192.168.8.100:5000/restaurateur/restaurateurDetails/getDetails');
       const restaurateurData = response.data;
       if (Array.isArray(restaurateurData)) {
         setRestaurants(restaurateurData);
-        setFilteredRestaurants(restaurateurData); // Set filtered list as well
+        setFilteredRestaurants(restaurateurData); 
       } else {
         console.error('Received data is not an array:', restaurateurData);
       }
@@ -30,11 +28,10 @@ const CustomerHomeScreen = ({ navigation }) => { // Add navigation prop
       console.error('Error fetching restaurant data:', error);
       Alert.alert('Error', 'Failed to load restaurant data. Please try again later.');
     } finally {
-      setLoading(false); // Stop loading indicator
+      setLoading(false); 
     }
   };
 
-  // Handle search functionality
   const handleSearch = (query) => {
     setSearchQuery(query);
     if (query) {
@@ -47,11 +44,10 @@ const CustomerHomeScreen = ({ navigation }) => { // Add navigation prop
     }
   };
 
-  // Render each restaurant item
   const renderRestaurant = ({ item }) => (
     <TouchableOpacity 
       style={styles.restaurantContainer} 
-      onPress={() => navigation.navigate('RestaurantProfile', { restaurant: item })} // Pass restaurant data to profile
+      onPress={() => navigation.navigate('RestaurantProfile', { restaurant: item })} 
     >
       <Image source={{ uri: item.logo }} style={styles.restaurantImage} />
       <View style={styles.restaurantDetails}>
@@ -64,7 +60,7 @@ const CustomerHomeScreen = ({ navigation }) => { // Add navigation prop
 
   return (
     <View style={styles.container}>
-      {loading ? ( // Show loading indicator
+      {loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
       ) : (
         <>
@@ -86,7 +82,6 @@ const CustomerHomeScreen = ({ navigation }) => { // Add navigation prop
   );
 };
 
-// Bottom Tab Navigation
 const Tab = createBottomTabNavigator();
 
 export default function CustomerHomePage() {
@@ -112,7 +107,6 @@ export default function CustomerHomePage() {
   );
 }
 
-// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -14,7 +14,7 @@ function CustomerSignUp() {
     password: ""
   });
 
-  const navigation = useNavigation(); // Moved to the top
+  const navigation = useNavigation(); 
 
   const handleValues = (name, value) => {
     setSignupData((prev) => ({ ...prev, [name]: value }));

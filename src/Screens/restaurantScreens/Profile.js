@@ -23,7 +23,7 @@ const Profile = () => {
         const fetchProfileData = async () => {
             try {
                 const token = await AsyncStorage.getItem('userToken');
-                console.log("Token from AsyncStorage:", token); // Debugging log
+                console.log("Token from AsyncStorage:", token); 
                 if (!token) throw new Error('No token found');
 
                 const response = await axios.get('http://192.168.8.100:5000/restaurant/profile', {
@@ -32,10 +32,9 @@ const Profile = () => {
                     },
                 });
 
-                console.log("Response from backend:", response.data); // Debugging log
+                console.log("Response from backend:", response.data); 
 
                 if (response.data) {
-                    // Mapping response data to profileData state
                     setProfileData({
                         restaurantName: response.data.username,
                         ownerName: response.data.ownername,
@@ -46,12 +45,10 @@ const Profile = () => {
                         email: response.data.email,
                     });
 
-                    // Handle logo
                     if (response.data.logo && response.data.logo.data) {
-                        // Convert the Buffer to a Base64 string
                         const base64Logo = response.data.logo.data.reduce((data, byte) => data + String.fromCharCode(byte), '');
-                        const logoBase64 = `data:image/png;base64,${btoa(base64Logo)}`; // Create data URI
-                        setLogoUri(logoBase64); // Set logo URI
+                        const logoBase64 = `data:image/png;base64,${btoa(base64Logo)}`; 
+                        setLogoUri(logoBase64); 
                     }
                 }
             } catch (error) {

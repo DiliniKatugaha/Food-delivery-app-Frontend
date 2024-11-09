@@ -1,4 +1,3 @@
-// src/Screens/restaurantScreens/AddMenu.js
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Alert } from 'react-native';
@@ -18,26 +17,22 @@ const AddMenu = ({ navigation, route }) => {
   const [deliveryFee, setDeliveryFee] = useState(menu ? menu.deliveryFee : '');
 
   useEffect(() => {
-    // Set initial state when the menu prop changes
     if (menu) {
       setName(menu.name);
       setImage(menu.image);
       setDetails(menu.details);
       setDeliveryFee(menu.deliveryFee);
-      // Check if categories are defined, and ensure it's an array
       setCategories(Array.isArray(menu.categories) && menu.categories.length > 0 ? menu.categories : [{ name: '', price: '' }]);
     }
   }, [menu]);
 
   const pickImage = async () => {
-    // Request permission to access media library
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission to access camera roll is required!');
       return;
     }
 
-    // Launch image picker
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -45,20 +40,17 @@ const AddMenu = ({ navigation, route }) => {
       quality: 1,
     });
 
-    // Check if image selection was canceled
     if (result.cancelled) {
       console.log("Image selection was canceled");
       return;
     }
 
-    // Log the result from the image picker
     console.log("Image selected:", result);
 
-    // Safely set the image URI
     if (result.assets && result.assets.length > 0) {
-        const selectedImageUri = result.assets[0].uri; // Access the URI from the selected asset
-        setImage(selectedImageUri); // Update the state with selected image URI
-        console.log("Updated image state:", selectedImageUri); // Log the updated state
+        const selectedImageUri = result.assets[0].uri; 
+        setImage(selectedImageUri);
+        console.log("Updated image state:", selectedImageUri); 
     } else {
         console.error("No image assets found");
     }
@@ -149,14 +141,14 @@ const AddMenu = ({ navigation, route }) => {
             <TextInput
               style={[styles.input, styles.categoryInput]}
               placeholder={`Category ${index + 1}`}
-              value={category.name} // Make sure to set the correct value
+              value={category.name} 
               onChangeText={(text) => handleCategoryChange(index, 'name', text)}
             />
             <TextInput
               style={[styles.input, styles.categoryInput]}
               placeholder={`Price`}
               keyboardType="numeric"
-              value={category.price} // Make sure to set the correct value
+              value={category.price} 
               onChangeText={(text) => handleCategoryChange(index, 'price', text)}
             />
             <TouchableOpacity onPress={() => removeCategory(index)} style={styles.removeButton}>

@@ -1,4 +1,3 @@
-// src/Screens/restaurantScreens/ViewMenu.js
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';

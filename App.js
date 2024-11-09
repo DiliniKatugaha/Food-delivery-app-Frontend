@@ -40,7 +40,6 @@ function App() {
 
 
 
-        {/* Add other screens here like SignUp, ForgotPassword if needed */}
       </Stack.Navigator>
     </NavigationContainer>
   );
